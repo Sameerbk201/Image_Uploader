@@ -8,7 +8,7 @@ const GetUploadedImages = () => {
 
   const fetchUploadedImages = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:5000/get-image`);
+      const { data } = await axios.get(`${utilobj.url}/get-image`);
       console.log(data.message);
       setUploadedImages(data.message);
     } catch (err) {

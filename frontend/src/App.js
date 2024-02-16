@@ -1,6 +1,7 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import GetUploadedImages from "./Components/GetUploadedImages";
+import utilobj from "./Utils/Utils";
 
 function App() {
   const [file, setFile] = useState(null);
@@ -17,7 +18,7 @@ function App() {
 
     try {
       setIsUploading(true);
-      const res = await axios.post("http://localhost:5000/upload", formData, {
+      const res = await axios.post(utilobj.url + "/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -38,13 +39,13 @@ function App() {
       {filename && <p>Selected file: {filename}</p>}
       {file && (
         <img
-          src={`http://localhost:5000/uploads/${filename}`}
+          src={`${utilobj.url}/uploads/${filename}`}
           alt="Uploaded"
           style={{ maxWidth: "300px", marginTop: "20px" }}
         />
       )}
       {isUploading && <h1>Uploading.....</h1>}
-      <GetUploadedImages/>
+      <GetUploadedImages />
     </div>
   );
 }
